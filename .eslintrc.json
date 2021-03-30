@@ -19,7 +19,10 @@
       "jsx": true
     },
     "ecmaVersion": 12,
-    "sourceType": "module"
+    "sourceType": "module",
+    "babelOptions": {
+      "configFile": "./babel.config.json"
+    }
   },
   "plugins": ["react", "react-hooks", "jsx-a11y"],
   "rules": {
