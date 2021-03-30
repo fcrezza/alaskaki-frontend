@@ -14,15 +14,17 @@ const BaseButton = styled.button`
 
   &:focus,
   &:active {
-    box-shadow: ${({theme}) => `0 0 0 3px ${lighten(0.25, theme.blue)}`};
+    box-shadow: ${({theme, disabled}) =>
+      disabled ? null : `0 0 0 3px ${lighten(0.25, theme.blue)}`};
   }
 `;
 
 const outline = css`
   background: transparent;
-  border: 1px solid ${({theme}) => theme.blue};
-  color: ${({theme}) => theme.blue};
-
+  border: 1px solid
+    ${({theme, disabled}) => (disabled ? lighten(0.1, theme.blue) : theme.blue)};
+  color: ${({theme, disabled}) =>
+    disabled ? lighten(0.1, theme.blue) : theme.blue};
   &:hover,
   &:focus,
   &:active {
@@ -34,10 +36,11 @@ const StyledButton = styled(BaseButton)`
   color: ${({theme}) => theme.white};
   padding: ${({size}) => (size === "small" ? ".8rem 1rem" : ".8rem 1rem")};
   font-size: ${({size}) => (size === "small" ? "1rem" : "1.125rem")};
-  display: ${({block}) => (block ? "block" : "inline-block")};
+  display: ${({block}) => (block === "true" ? "block" : "inline-block")};
+  width: ${({block}) => (block === "true" ? "100%" : "auto")};
   font-weight: 700;
   background: ${({disabled, theme}) =>
-    disabled ? theme["black.50"] : theme.blue};
+    disabled ? lighten(0.09, theme.blue) : theme.blue};
   cursor: ${({disabled}) => (disabled ? "default" : "pointer")};
   text-transform: capitalize;
 

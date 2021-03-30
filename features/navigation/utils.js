@@ -1,6 +1,8 @@
 import styled from "styled-components";
 
-export const StyledNavigation = styled.div``;
+export const StyledNavigation = styled.div`
+  border-bottom: ${({theme}) => `1px solid ${theme.gray}`};
+`;
 
 export const NavigationContainer = styled.div`
   max-width: 1200px;
@@ -11,6 +13,7 @@ export const NavigationItemContainer = styled.div`
   display: flex;
   align-items: center;
   padding: 1rem 0;
+  justify-content: space-between;
 
   & > *:not(:last-child) {
     margin-right: 1.5rem;

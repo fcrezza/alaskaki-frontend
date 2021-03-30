@@ -1,8 +1,7 @@
-import React from "react";
 import styled from "styled-components";
 import {darken, lighten} from "polished";
 
-const StyledInput = styled.input`
+export const StyledInput = styled.input`
   padding: 0.8rem 1.2rem;
   width: 100%;
   border: 0;
@@ -23,7 +22,7 @@ const StyledInput = styled.input`
   }
 `;
 
-const StyledInputRightElement = styled.div`
+export const StyledInputRightElement = styled.div`
   margin-right: 0.5rem;
   width: 2rem;
   position: absolute;
@@ -34,7 +33,7 @@ const StyledInputRightElement = styled.div`
   align-items: center;
 `;
 
-const StyledInputGroup = styled.div`
+export const StyledInputGroup = styled.div`
   position: relative;
   width: 100%;
 
@@ -44,27 +43,9 @@ const StyledInputGroup = styled.div`
   }
 `;
 
-export const Input = React.forwardRef((props, ref) => {
-  const {placeholder, type, onChange, value, name, ...rest} = props;
-
-  return (
-    <StyledInput
-      id={name}
-      type={type}
-      onChange={onChange}
-      value={value}
-      name={name}
-      placeholder={placeholder}
-      ref={ref}
-      {...rest}
-    />
-  );
-});
-
-export function InputGroup({children}) {
-  return <StyledInputGroup>{children}</StyledInputGroup>;
-}
-
-export function InputRightElement({children}) {
-  return <StyledInputRightElement>{children}</StyledInputRightElement>;
-}
+export const StyledInputLabel = styled.label`
+  font-size: 1rem;
+  display: block;
+  color: ${({theme}) => theme["black.50"]};
+  margin-bottom: 0.5rem;
+`;

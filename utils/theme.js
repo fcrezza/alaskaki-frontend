@@ -12,7 +12,8 @@ const colorScheme = {
   white: "#fff",
   gray: "#d9d9d9",
   "black.100": "#333",
-  "black.50": "#555"
+  "black.50": "#555",
+  red: "red"
 };
 
 const GlobalStyle = createGlobalStyle`

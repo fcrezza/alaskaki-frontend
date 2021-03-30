@@ -16,6 +16,9 @@ import {
 
 function Navigation() {
   const router = useRouter();
+  const isLoginPage = router.pathname.startsWith("/login");
+  const isSignupPage = router.pathname.startsWith("/signup");
+  const isAuthenticated = false;
 
   return (
     <StyledNavigation>
@@ -24,18 +27,33 @@ function Navigation() {
           <IconButton onClick={() => router.push("/")}>
             <Logo width={46} height={46} />
           </IconButton>
-          <Link href="/category">Kategori</Link>
-          <SearchInput />
-          <IconButton onClick={() => router.push("/cart")}>
-            <Cart width={32} height={32} />
-          </IconButton>
-          <Divider />
-          <AuthButtonGroup>
-            <Button onClick={() => router.push("/login")}>Masuk</Button>
-            <Button variant="outline" onClick={() => router.push("/signup")}>
-              Daftar
-            </Button>
-          </AuthButtonGroup>
+          {!isLoginPage && !isSignupPage ? (
+            <>
+              <Link href="/category">Kategori</Link>
+              <SearchInput />
+              <IconButton onClick={() => router.push("/cart")}>
+                <Cart width={32} height={32} />
+              </IconButton>
+              <Divider />
+            </>
+          ) : null}
+          {!isAuthenticated ? (
+            <AuthButtonGroup>
+              {isSignupPage || (!isSignupPage && !isLoginPage) ? (
+                <Button onClick={() => router.push("/login")}>Masuk</Button>
+              ) : null}
+              {isLoginPage || (!isSignupPage && !isLoginPage) ? (
+                <Button
+                  variant="outline"
+                  onClick={() => router.push("/signup")}
+                >
+                  Daftar
+                </Button>
+              ) : null}
+            </AuthButtonGroup>
+          ) : (
+            <p>authenticated!</p>
+          )}
         </NavigationItemContainer>
       </NavigationContainer>
     </StyledNavigation>
