@@ -22,10 +22,10 @@ import {
   GoogleButtonText
 } from "./utils";
 import ErrorMessage from "components/ErrorMessage";
-import axios from "utils/axios";
+import {useAuth} from "utils/auth";
 
 const signupValidation = yup.object().shape({
-  fullname: yup.string().trim().required("Nama lengkap tidak boleh kosong"),
+  name: yup.string().trim().required("Nama lengkap tidak boleh kosong"),
   email: yup
     .string()
     .trim()
@@ -40,24 +40,48 @@ const signupValidation = yup.object().shape({
 
 function Form() {
   const router = useRouter();
-  const {handleSubmit, register, formState, errors} = useForm({
+  const {localSignup, googleOauth} = useAuth();
+  const {handleSubmit, register, formState, errors, setError} = useForm({
     resolver: yupResolver(signupValidation)
   });
   const [isPasswordVisible, setPasswordVisibility] = React.useState(false);
 
-  const onSubmit = value => {
-    console.log(value);
+  const onSubmit = async ({name, email, password}) => {
+    try {
+      await localSignup({name, email, password});
+      router.push("/profile");
+    } catch (error) {
+      if (error.response) {
+        setError("server", {
+          message: error.response.data.error.message
+        });
+      } else {
+        setError("server", {
+          message: "Terjadi masalah saat mengirim request, coba lagi"
+        });
+      }
+    }
   };
 
-  const handleSuccessLogin = async successResponse => {
-    await axios.post("/api/v1/auth/login/google", {
-      token: successResponse.tokenId
-    });
-    router.push("/profile");
+  const handleGoogleLoginSuccess = async response => {
+    try {
+      await googleOauth(response);
+      router.push("/profile");
+    } catch (error) {
+      if (error.response) {
+        setError("server", {
+          message: error.response.data.error.message
+        });
+      } else {
+        setError("server", {
+          message: "Terjadi masalah saat mengirim request, coba lagi"
+        });
+      }
+    }
   };
 
-  const handleErrorLogin = errorResponse => {
-    console.log({errorResponse});
+  const handleGoogleLoginFailure = errorResponse => {
+    console.log(errorResponse);
   };
 
   return (
@@ -65,8 +89,8 @@ function Form() {
       <Title>Daftar</Title>
       <GoogleLogin
         clientId={process.env.NEXT_PUBLIC_GOOGLE_OAUTH_CLIENT_ID}
-        onSuccess={handleSuccessLogin}
-        onFailure={handleErrorLogin}
+        onSuccess={handleGoogleLoginSuccess}
+        onFailure={handleGoogleLoginFailure}
         theme="dark"
         render={({disabled, onClick}) => (
           <Button variant="outline" onClick={onClick} disabled={disabled} block>
@@ -79,8 +103,8 @@ function Form() {
       />
       <Divider />
       <StyledForm onSubmit={handleSubmit(onSubmit)}>
-        <InputLabel id="fullname">Nama Lengkap</InputLabel>
-        <Input id="fullname" name="fullname" ref={register} />
+        <InputLabel id="name">Nama Lengkap</InputLabel>
+        <Input id="name" name="name" ref={register} />
         <InputLabel id="email">Email</InputLabel>
         <Input id="email" name="email" ref={register} />
         <InputLabel id="password">Password</InputLabel>
