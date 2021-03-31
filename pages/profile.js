@@ -1,4 +1,6 @@
 import {useRouter} from "next/router";
+
+import {AuthenticatedRoute} from "components/Routes";
 import {useAuth} from "utils/auth";
 
 function Profile() {
@@ -11,10 +13,12 @@ function Profile() {
   };
 
   return (
-    <div>
-      <pre>{JSON.stringify(user, null, 2)}</pre>
-      <button onClick={handleLogout}>logout</button>
-    </div>
+    <AuthenticatedRoute>
+      <div>
+        <pre>{JSON.stringify(user, null, 2)}</pre>
+        <button onClick={handleLogout}>logout</button>
+      </div>
+    </AuthenticatedRoute>
   );
 }
 
