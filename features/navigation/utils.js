@@ -9,10 +9,9 @@ export const NavigationContainer = styled.div`
   margin: 0 auto;
 `;
 
-export const NavigationItemContainer = styled.div`
+export const NavigationItemsContainer = styled.div`
   display: flex;
   align-items: center;
-  padding: 1rem 0;
   justify-content: space-between;
 
   & > *:not(:last-child) {
@@ -29,8 +28,13 @@ export const Divider = styled.div`
 
 export const AuthButtonGroup = styled.div`
   display: flex;
+  padding: 1rem 0;
 
   & > *:first-child {
     margin-right: 1rem;
   }
+`;
+
+export const NavigationItemWrapper = styled.div`
+  padding: 1rem 0;
 `;
