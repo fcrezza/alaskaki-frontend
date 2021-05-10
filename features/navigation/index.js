@@ -4,19 +4,19 @@ import {MdClose} from "react-icons/md";
 import styled, {useTheme} from "styled-components";
 
 import Link from "components/Link";
+import Divider from "components/Divider";
 import {InputGroup, Input, InputRightElement} from "components/Input";
 import {Logo, Cart} from "components/Icon";
 import {Button, IconButton} from "components/Button";
+import CategoryItems from "./categoryitems";
 import {
   NavigationPopover,
   NavigationPopoverContent,
   NavigationPopoverOverlay,
   NavigationPopoverTrigger
-} from "./Popover";
+} from "./popover";
 
-const StyledNavigation = styled.div`
-  border-bottom: ${({theme}) => `1px solid ${theme.gray}`};
-`;
+const StyledNavigation = styled.div``;
 
 const NavigationContainer = styled.div`
   max-width: 1200px;
@@ -31,13 +31,6 @@ const NavigationItemsContainer = styled.div`
   & > *:not(:last-child) {
     margin-right: 1.5rem;
   }
-`;
-
-const Divider = styled.div`
-  align-self: stretch;
-  width: 1px;
-  min-height: 100%;
-  background-color: ${({theme}) => theme.gray};
 `;
 
 const AuthButtonGroup = styled.div`
@@ -105,9 +98,7 @@ function Navigation() {
                   </Button>
                 </NavigationPopoverTrigger>
                 <NavigationPopoverContent>
-                  <div style={{padding: "1rem"}}>
-                    visible! <Button>Click here</Button>
-                  </div>
+                  <CategoryItems />
                 </NavigationPopoverContent>
                 <NavigationPopoverOverlay />
               </NavigationPopover>
@@ -130,7 +121,7 @@ function Navigation() {
                 </NavigationPopoverContent>
                 <NavigationPopoverOverlay />
               </NavigationPopover>
-              <Divider />
+              <Divider orientation="vertical" />
             </>
           ) : null}
           {!isAuthenticated ? (
@@ -148,10 +139,12 @@ function Navigation() {
               ) : null}
             </AuthButtonGroup>
           ) : (
+            // TODO: implement authenticated component
             <p>authenticated!</p>
           )}
         </NavigationItemsContainer>
       </NavigationContainer>
+      <Divider />
     </StyledNavigation>
   );
 }
@@ -177,9 +170,10 @@ function SearchInput() {
   );
 }
 
+// TODO: Implement cart items feature
 function CartItems() {
   return (
-    <div style={{padding: "1rem", textAlign: "center"}}>
+    <div style={{padding: "1rem", textAlign: "center", width: "350px"}}>
       <p>Tidak ada apa-apa disini</p>
     </div>
   );

@@ -1,3 +1,6 @@
+/* TODO: - Popover should close when lose focus
+         - Trap focus when navigate using keyboard
+*/
 import * as React from "react";
 import styled from "styled-components";
 import ReactDOM from "react-dom";
@@ -19,8 +22,6 @@ const StyledNavigationPopoverContent = styled.div`
   position: fixed;
   top: ${({y}) => y};
   left: ${({x}) => x};
-  width: 300px;
-  height: auto;
   border-radius: 10px;
   background: ${({theme}) => theme.white};
   box-shadow: rgb(0 0 0 / 12%) 0px 2px 8px 0px;

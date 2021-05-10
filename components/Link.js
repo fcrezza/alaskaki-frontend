@@ -1,7 +1,8 @@
 import NextLink from "next/link";
 import styled from "styled-components";
+import {darken} from "polished";
 
-const StyledLink = styled.a`
+const InlineLink = styled.a`
   text-decoration: none;
   color: ${({theme}) => theme.blue};
   display: inline-block;
@@ -13,18 +14,46 @@ const StyledLink = styled.a`
   }
 `;
 
-function Link({children, isExternal, color, href}) {
+const BlockLink = styled.a`
+  padding: 8px;
+  border-radius: 5px;
+  display: block;
+  font-size: 1rem;
+  outline: none;
+  text-decoration: none;
+  color: ${({theme}) => theme["black.50"]};
+
+  &:hover,
+  &:focus {
+    background: ${({theme}) => darken(0.098, theme.white)};
+  }
+`;
+
+function Link({children, isExternal, color, href, variant, ...props}) {
   if (isExternal) {
-    return (
-      <StyledLink href={href} color={color} rel="noopener noreferrer">
+    return variant === "block" ? (
+      <BlockLink href={href} color={color} rel="noopener noreferrer" {...props}>
         {children}
-      </StyledLink>
+      </BlockLink>
+    ) : (
+      <InlineLink
+        href={href}
+        color={color}
+        rel="noopener noreferrer"
+        {...props}
+      >
+        {children}
+      </InlineLink>
     );
   }
 
   return (
     <NextLink href={href} passHref>
-      <StyledLink>{children}</StyledLink>
+      {variant === "block" ? (
+        <BlockLink {...props}>{children}</BlockLink>
+      ) : (
+        <InlineLink {...props}>{children}</InlineLink>
+      )}
     </NextLink>
   );
 }
