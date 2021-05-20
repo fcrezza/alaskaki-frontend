@@ -1,3 +1,5 @@
+// TODO: make navigation stick on the top while scrolling
+
 import * as React from "react";
 import {useRouter} from "next/router";
 import {MdClose} from "react-icons/md";
