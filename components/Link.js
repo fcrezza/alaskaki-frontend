@@ -32,12 +32,19 @@ const BlockLink = styled.a`
 function Link({children, isExternal, color, href, variant, ...props}) {
   if (isExternal) {
     return variant === "block" ? (
-      <BlockLink href={href} color={color} rel="noopener noreferrer" {...props}>
+      <BlockLink
+        href={href}
+        target="_blank"
+        color={color}
+        rel="noopener noreferrer"
+        {...props}
+      >
         {children}
       </BlockLink>
     ) : (
       <InlineLink
         href={href}
+        target="_blank"
         color={color}
         rel="noopener noreferrer"
         {...props}
