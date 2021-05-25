@@ -16,7 +16,7 @@ function NewProducts() {
             brand="Jaguar"
             title="Casual Jaguar Reborn Brown White [Women]"
             price={1510000}
-            imageURL="/assets/product1.png"
+            imageURL="/assets/images/product1.png"
             isNew
           />
         ))}

@@ -7,7 +7,7 @@ import styled from "styled-components";
 const FooterContainer = styled.div`
   background: ${({theme}) => lighten(0.1, theme["gray"])};
   border-top: 8px solid ${({theme}) => theme.blue};
-  margin-top: 5rem;
+  margin-top: auto;
 `;
 
 const FooterInnerContainer = styled.div`

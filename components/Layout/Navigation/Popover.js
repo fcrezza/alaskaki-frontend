@@ -16,6 +16,7 @@ const StyledPopoverOverlay = styled.div`
   right: 0;
   left: 0;
   background: rgba(0, 0, 0, 0.6);
+  z-index: 998;
 `;
 
 const StyledNavigationPopoverContent = styled.div`
@@ -25,6 +26,7 @@ const StyledNavigationPopoverContent = styled.div`
   border-radius: 10px;
   background: ${({theme}) => theme.white};
   box-shadow: rgb(0 0 0 / 12%) 0px 2px 8px 0px;
+  z-index: 999;
 `;
 
 const PopoverContext = React.createContext();

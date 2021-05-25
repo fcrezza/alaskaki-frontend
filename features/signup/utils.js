@@ -1,10 +1,8 @@
 import styled from "styled-components";
 
 export const FormContainer = styled.div`
-  margin: 2rem auto 0;
-  padding: 2rem;
-  border-radius: 1rem;
-  width: 450px;
+  margin: 3rem auto 0;
+  width: 400px;
 
   & > *:not(:last-child, h1) {
     margin-bottom: 1.5rem;

@@ -18,7 +18,7 @@ function TrendingProducts() {
               title="Casual Jaguar Reborn Brown White [Women]"
               price={1510000}
               discount={0.14}
-              imageURL="/assets/product1.png"
+              imageURL="/assets/images/product1.png"
             />
           ) : (
             <ProductCard
@@ -27,7 +27,7 @@ function TrendingProducts() {
               brand="Jaguar"
               title="Casual Jaguar Reborn Brown White [Women]"
               price={1510000}
-              imageURL="/assets/product1.png"
+              imageURL="/assets/images/product1.png"
             />
           )
         )}

@@ -1,7 +1,7 @@
 import {ErrorBoundary} from "react-error-boundary";
 
 import ErrorFallback from "components/ErrorFallback";
-import SplashScreen from "features/splashscreen";
+import SplashScreen from "components/SplashScreen";
 import Theme from "utils/theme";
 import Head from "components/Head";
 import {AuthProvider} from "utils/auth";

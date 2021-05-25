@@ -84,10 +84,7 @@ const ProductCardPrice = styled.h3`
   margin: 0;
 `;
 
-const ProductListContainer = styled.div`
-  max-width: 1200px;
-  margin: 0 auto;
-`;
+const ProductListContainer = styled.div``;
 
 const ProductListTopSection = styled.div`
   display: flex;

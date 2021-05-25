@@ -1,5 +1,3 @@
-// TODO: make navigation stick on the top while scrolling
-
 import * as React from "react";
 import {useRouter} from "next/router";
 import {MdClose} from "react-icons/md";
@@ -10,15 +8,22 @@ import Divider from "components/Divider";
 import {InputGroup, Input, InputRightElement} from "components/Input";
 import {Logo, Cart} from "components/Icon";
 import {Button, IconButton} from "components/Button";
-import CategoryItems from "./categoryitems";
+import CategoryItems from "./CategoryItems";
 import {
   NavigationPopover,
   NavigationPopoverContent,
   NavigationPopoverOverlay,
   NavigationPopoverTrigger
-} from "./popover";
+} from "./Popover";
 
-const StyledNavigation = styled.div``;
+const StyledNavigation = styled.div`
+  position: fixed;
+  top: 0;
+  right: 0;
+  left: 0;
+  z-index: 999;
+  background: ${({theme}) => theme.white};
+`;
 
 const NavigationContainer = styled.div`
   max-width: 1200px;

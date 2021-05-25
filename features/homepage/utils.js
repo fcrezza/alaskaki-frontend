@@ -1,14 +1,12 @@
 import styled from "styled-components";
 
 export const StyledBanner = styled.div`
-  height: 450px;
+  height: 400px;
 `;
 
 export const BannerContainer = styled.div`
-  max-width: 1200px;
   height: 100%;
-  margin: 0 auto;
-  background-image: url("/hero.png");
+  background-image: url("/assets/images/hero.png");
   background-repeat: no-repeat;
   background-position: calc(100% + 80px) center;
 `;

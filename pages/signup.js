@@ -1,17 +1,16 @@
 import SignupForm from "features/signup/form";
 import Head from "components/Head";
-import Navigation from "features/navigation";
 import {UnauthenticatedRoute} from "components/Routes";
+import Layout from "components/Layout";
 
 function Signup() {
   return (
-    <>
-      <UnauthenticatedRoute>
-        <Head title="Signup | Alas Kaki" description="Signup | Alas Kaki" />
-        <Navigation />
+    <UnauthenticatedRoute>
+      <Head title="Signup | Alas Kaki" description="Signup | Alas Kaki" />
+      <Layout>
         <SignupForm />
-      </UnauthenticatedRoute>
-    </>
+      </Layout>
+    </UnauthenticatedRoute>
   );
 }
 
