@@ -5,6 +5,7 @@ import SplashScreen from "components/SplashScreen";
 import Theme from "utils/theme";
 import Head from "components/Head";
 import {AuthProvider} from "utils/auth";
+import {CartProvider} from "utils/cart";
 
 function MyApp({Component, pageProps}) {
   return (
@@ -16,7 +17,9 @@ function MyApp({Component, pageProps}) {
       <ErrorBoundary FallbackComponent={ErrorFallback}>
         <AuthProvider>
           <SplashScreen>
-            <Component {...pageProps} />
+            <CartProvider>
+              <Component {...pageProps} />
+            </CartProvider>
           </SplashScreen>
         </AuthProvider>
       </ErrorBoundary>

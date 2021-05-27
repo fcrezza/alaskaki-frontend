@@ -3,6 +3,15 @@ import styled from "styled-components";
 
 import Link from "components/Link";
 import Divider from "components/Divider";
+import {
+  NavigationPopover,
+  NavigationPopoverContent,
+  NavigationPopoverOverlay,
+  NavigationPopoverTrigger
+} from "./Popover";
+import {useRouter} from "next/router";
+import {usePopoverPosition} from "./utils";
+import {Button} from "components/Button";
 
 const CategoryItemsContainer = styled.div`
   display: flex;
@@ -37,76 +46,105 @@ const CategoryDetailContent = styled.div`
 
 // TODO: change item url path
 function CategoryItems() {
+  const router = useRouter();
+  const {isOpen, onOpen, onClose, position} = usePopoverPosition();
   const [categoryDetail, setCategoryDetail] = React.useState(null);
 
   return (
-    <CategoryItemsContainer>
-      <ListItem>
-        <Link
-          href="/"
-          variant="block"
-          onMouseEnter={() => setCategoryDetail("man")}
-          onFocus={() => setCategoryDetail("man")}
+    <NavigationPopover
+      isOpen={isOpen}
+      onOpen={onOpen}
+      onClose={onClose}
+      contentXPosition={`${position?.left}px`}
+      contentYPosition={`${position?.bottom + 16}px`}
+      topOverlay={`${position?.bottom + 22}px`}
+    >
+      <NavigationPopoverTrigger>
+        <Button
+          onClick={() => router.push("/category")}
+          variant="ghost"
+          size="small"
         >
-          Sepatu Pria
-        </Link>
-        <Link
-          href="/"
-          variant="block"
-          onMouseEnter={() => setCategoryDetail("woman")}
-          onFocus={() => setCategoryDetail("woman")}
-        >
-          Sepatu Wanita
-        </Link>
-        <Link
-          href="/"
-          variant="block"
-          onMouseEnter={() => setCategoryDetail("kid")}
-          onFocus={() => setCategoryDetail("kid")}
-        >
-          Sepatu Anak
-        </Link>
-        <Link
-          href="/"
-          variant="block"
-          onMouseEnter={() => setCategoryDetail("brand")}
-          onFocus={() => setCategoryDetail("brand")}
-        >
-          Brand
-        </Link>
-      </ListItem>
-      <CategoryDetail isOpen={categoryDetail === "man"} title="Sepatu Pria">
-        <Link href="/">Sepatu Formal Pria</Link>
-        <Link href="/">Sepatu Kasual Pria</Link>
-        <Link href="/">Sepatu Olahraga Pria</Link>
-        <Link href="/">Sepatu Sandal Pria</Link>
-        <Link href="/">Sepatu Boots Pria</Link>
-        <Link href="/">Sepatu Sneakers Pria</Link>
-      </CategoryDetail>
-      <CategoryDetail isOpen={categoryDetail === "woman"} title="Sepatu Wanita">
-        <Link href="/">Sepatu Formal Wanita</Link>
-        <Link href="/">Sepatu Kasual Wanita</Link>
-        <Link href="/">Sepatu Olahraga Wanita</Link>
-        <Link href="/">Sepatu Sandal Wanita</Link>
-        <Link href="/">Sepatu Boots Wanita</Link>
-        <Link href="/">Sepatu Sneakers Wanita</Link>
-      </CategoryDetail>
-      <CategoryDetail isOpen={categoryDetail === "kid"} title="Sepatu Anak">
-        <Link href="/">Sepatu Formal Anak</Link>
-        <Link href="/">Sepatu Kasual Anak</Link>
-        <Link href="/">Sepatu Olahraga Anak</Link>
-        <Link href="/">Sepatu Sandal Anak</Link>
-        <Link href="/">Sepatu Boots Anak</Link>
-        <Link href="/">Sepatu Sneakers Anak</Link>
-      </CategoryDetail>
-      <CategoryDetail isOpen={categoryDetail === "brand"} title="Brand Sepatu">
-        <Link href="/">Brand Sepatu 1</Link>
-        <Link href="/">Brand Sepatu 2</Link>
-        <Link href="/">Brand Sepatu 3</Link>
-        <Link href="/">Brand Sepatu 4</Link>
-        <Link href="/">Brand Sepatu 5</Link>
-      </CategoryDetail>
-    </CategoryItemsContainer>
+          Kategori
+        </Button>
+      </NavigationPopoverTrigger>
+      <NavigationPopoverContent>
+        <CategoryItemsContainer>
+          <ListItem>
+            <Link
+              href="/"
+              variant="block"
+              onMouseEnter={() => setCategoryDetail("man")}
+              onFocus={() => setCategoryDetail("man")}
+            >
+              Sepatu Pria
+            </Link>
+            <Link
+              href="/"
+              variant="block"
+              onMouseEnter={() => setCategoryDetail("woman")}
+              onFocus={() => setCategoryDetail("woman")}
+            >
+              Sepatu Wanita
+            </Link>
+            <Link
+              href="/"
+              variant="block"
+              onMouseEnter={() => setCategoryDetail("kid")}
+              onFocus={() => setCategoryDetail("kid")}
+            >
+              Sepatu Anak
+            </Link>
+            <Link
+              href="/"
+              variant="block"
+              onMouseEnter={() => setCategoryDetail("brand")}
+              onFocus={() => setCategoryDetail("brand")}
+            >
+              Brand
+            </Link>
+          </ListItem>
+          <CategoryDetail isOpen={categoryDetail === "man"} title="Sepatu Pria">
+            <Link href="/">Sepatu Formal Pria</Link>
+            <Link href="/">Sepatu Kasual Pria</Link>
+            <Link href="/">Sepatu Olahraga Pria</Link>
+            <Link href="/">Sepatu Sandal Pria</Link>
+            <Link href="/">Sepatu Boots Pria</Link>
+            <Link href="/">Sepatu Sneakers Pria</Link>
+          </CategoryDetail>
+          <CategoryDetail
+            isOpen={categoryDetail === "woman"}
+            title="Sepatu Wanita"
+          >
+            <Link href="/">Sepatu Formal Wanita</Link>
+            <Link href="/">Sepatu Kasual Wanita</Link>
+            <Link href="/">Sepatu Olahraga Wanita</Link>
+            <Link href="/">Sepatu Sandal Wanita</Link>
+            <Link href="/">Sepatu Boots Wanita</Link>
+            <Link href="/">Sepatu Sneakers Wanita</Link>
+          </CategoryDetail>
+          <CategoryDetail isOpen={categoryDetail === "kid"} title="Sepatu Anak">
+            <Link href="/">Sepatu Formal Anak</Link>
+            <Link href="/">Sepatu Kasual Anak</Link>
+            <Link href="/">Sepatu Olahraga Anak</Link>
+            <Link href="/">Sepatu Sandal Anak</Link>
+            <Link href="/">Sepatu Boots Anak</Link>
+            <Link href="/">Sepatu Sneakers Anak</Link>
+          </CategoryDetail>
+          <CategoryDetail
+            isOpen={categoryDetail === "brand"}
+            title="Brand Sepatu"
+          >
+            <Link href="/">Brand Sepatu 1</Link>
+            <Link href="/">Brand Sepatu 2</Link>
+            <Link href="/">Brand Sepatu 3</Link>
+            <Link href="/">Brand Sepatu 4</Link>
+            <Link href="/">Brand Sepatu 5</Link>
+          </CategoryDetail>
+        </CategoryItemsContainer>
+      </NavigationPopoverContent>
+      <NavigationPopoverOverlay />
+    </NavigationPopover>
   );
 }
 

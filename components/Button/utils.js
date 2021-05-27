@@ -20,7 +20,7 @@ const ghost = css`
 
   &:hover,
   &:focus {
-    background: ${({theme}) => theme.gray};
+    background: ${({theme}) => lighten(0.06, theme.gray)};
   }
 `;
 
@@ -69,7 +69,7 @@ export const StyledIconButton = styled(BaseButton)`
 
   &:hover,
   &:focus {
-    background: ${({theme}) => theme.gray};
+    background: ${({theme}) => lighten(0.06, theme.gray)};
   }
 
   * {

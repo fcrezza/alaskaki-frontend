@@ -1,20 +1,15 @@
 import * as React from "react";
 import {useRouter} from "next/router";
 import {MdClose} from "react-icons/md";
-import styled, {useTheme} from "styled-components";
+import styled from "styled-components";
 
 import Link from "components/Link";
 import Divider from "components/Divider";
 import {InputGroup, Input, InputRightElement} from "components/Input";
-import {Logo, Cart} from "components/Icon";
+import {Logo} from "components/Icon";
 import {Button, IconButton} from "components/Button";
 import CategoryItems from "./CategoryItems";
-import {
-  NavigationPopover,
-  NavigationPopoverContent,
-  NavigationPopoverOverlay,
-  NavigationPopoverTrigger
-} from "./Popover";
+import Cart from "./Cart";
 
 const StyledNavigation = styled.div`
   position: fixed;
@@ -54,83 +49,28 @@ function Navigation() {
   const isLoginPage = router.pathname.startsWith("/login");
   const isSignupPage = router.pathname.startsWith("/signup");
   const isAuthenticated = false; // TODO: change this
-  const theme = useTheme();
-  const [cardVisible, setCardVisible] = React.useState("none");
-  const popoverTogglePosition = React.useRef();
-  const navigationPosition = React.useRef();
-
-  const handleCategoryPopoverOpen = ({target}) => {
-    popoverTogglePosition.current = {
-      y: target.getBoundingClientRect().bottom,
-      x: target.getBoundingClientRect().left
-    };
-    setCardVisible("category");
-  };
-
-  const handleCartPopoverOpen = ({target}) => {
-    popoverTogglePosition.current = {
-      y: target.getBoundingClientRect().bottom,
-      x:
-        target.getBoundingClientRect().right -
-        target.getBoundingClientRect().width / 2 -
-        150
-    };
-    setCardVisible("cart");
-  };
 
   return (
-    <StyledNavigation ref={navigationPosition}>
+    <StyledNavigation>
       <NavigationContainer>
         <NavigationItemsContainer>
           <Link href="/">
             <Logo width={46} height={46} />
           </Link>
+          {/*
+          // should we hide other items in navigation when in login and signup page?
           {!isLoginPage && !isSignupPage ? (
             <>
-              <NavigationPopover
-                isOpen={cardVisible === "category"}
-                onOpen={handleCategoryPopoverOpen}
-                onClose={() => setCardVisible("none")}
-                contentXPosition={`${popoverTogglePosition.current?.x}px`}
-                contentYPosition={`${popoverTogglePosition.current?.y + 16}px`}
-                topOverlay={`${navigationPosition.current?.offsetHeight}px`}
-              >
-                <NavigationPopoverTrigger>
-                  <Button
-                    onClick={() => router.push("/category")}
-                    variant="ghost"
-                    size="small"
-                  >
-                    Kategori
-                  </Button>
-                </NavigationPopoverTrigger>
-                <NavigationPopoverContent>
-                  <CategoryItems />
-                </NavigationPopoverContent>
-                <NavigationPopoverOverlay />
-              </NavigationPopover>
+              <CategoryItems />
               <SearchInput />
-              <NavigationPopover
-                isOpen={cardVisible === "cart"}
-                onOpen={handleCartPopoverOpen}
-                onClose={() => setCardVisible("none")}
-                contentXPosition={`${popoverTogglePosition.current?.x}px`}
-                contentYPosition={`${popoverTogglePosition.current?.y + 16}px`}
-                topOverlay={`${popoverTogglePosition.current?.y + 22}px`}
-              >
-                <NavigationPopoverTrigger>
-                  <IconButton onClick={() => router.push("/cart")}>
-                    <Cart width={28} height={28} color={theme["black.50"]} />
-                  </IconButton>
-                </NavigationPopoverTrigger>
-                <NavigationPopoverContent>
-                  <CartItems />
-                </NavigationPopoverContent>
-                <NavigationPopoverOverlay />
-              </NavigationPopover>
+              <Cart />
               <Divider orientation="vertical" />
             </>
-          ) : null}
+          ) : null} */}
+          <CategoryItems />
+          <SearchInput />
+          <Cart />
+          <Divider orientation="vertical" />
           {!isAuthenticated ? (
             <AuthButtonGroup>
               {isSignupPage || (!isSignupPage && !isLoginPage) ? (
@@ -174,15 +114,6 @@ function SearchInput() {
         </InputRightElement>
       ) : null}
     </InputGroup>
-  );
-}
-
-// TODO: Implement cart items feature
-function CartItems() {
-  return (
-    <div style={{padding: "1rem", textAlign: "center", width: "350px"}}>
-      <p>Tidak ada apa-apa disini</p>
-    </div>
   );
 }
 
