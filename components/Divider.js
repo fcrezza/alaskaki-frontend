@@ -6,10 +6,12 @@ const StyledDivider = styled.div`
   min-height: ${({orientation}) =>
     orientation === "vertical" ? "100%" : "1px"};
   background-color: ${({theme}) => theme.gray};
+  margin: ${({orientation, size}) =>
+    orientation === "vertical" ? `0 ${size}` : `${size} 0`};
 `;
 
-function Divider({orientation}) {
-  return <StyledDivider orientation={orientation} />;
+function Divider({orientation, size}) {
+  return <StyledDivider orientation={orientation} size={size} />;
 }
 
 export default Divider;

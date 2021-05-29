@@ -164,7 +164,11 @@ export default function CartItems() {
                 <TotalCartItemText>
                   Keranjang ({items.length})
                 </TotalCartItemText>
-                <Button variant="ghost" size="small">
+                <Button
+                  variant="ghost"
+                  size="small"
+                  onClick={() => router.push("/cart")}
+                >
                   Lihat Semua
                 </Button>
               </CartItemsTopContainer>

@@ -2,7 +2,8 @@ import styled from "styled-components";
 import {darken, lighten} from "polished";
 
 export const StyledInput = styled.input`
-  padding: 0.8rem 1.2rem;
+  padding: ${({size}) =>
+    size === "small" ? "0.4rem 0.6rem" : "0.8rem 1.2rem"};
   width: 100%;
   border: 0;
   border-radius: 5px;

@@ -66,10 +66,21 @@ export const StyledButton = styled(BaseButton)`
 export const StyledIconButton = styled(BaseButton)`
   border-radius: 5px;
   padding: 0.3rem;
+  background-color: ${({theme, backgroundColor, disabled}) =>
+    disabled
+      ? lighten(0.09, theme[backgroundColor])
+      : backgroundColor
+      ? theme[backgroundColor]
+      : null};
+  color: ${({theme, color}) => (color ? theme[color] : theme["black.100"])};
+  cursor: ${({disabled}) => (disabled ? "default" : "pointer")};
 
   &:hover,
   &:focus {
-    background: ${({theme}) => lighten(0.06, theme.gray)};
+    background: ${({theme, backgroundColor}) =>
+      backgroundColor
+        ? lighten(0.06, theme[backgroundColor])
+        : lighten(0.06, theme.gray)};
   }
 
   * {

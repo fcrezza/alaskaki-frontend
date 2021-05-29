@@ -12,6 +12,7 @@ const LayoutContainer = styled.div`
 const Content = styled.div`
   margin: 100px auto;
   max-width: 1200px;
+  width: 100%;
   flex: 1;
 `;
 
