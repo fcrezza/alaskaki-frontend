@@ -5,7 +5,7 @@ import {lighten} from "polished";
 import {Input} from "components/Input";
 import {IconButton} from "components/Button";
 import {Add, Subtract, Trash} from "components/Icon";
-import {CheckboxInput} from "components/Checkbox";
+import Checkbox from "components/Checkbox";
 
 const CartItemOldPriceContainer = styled.div`
   display: flex;
@@ -68,6 +68,8 @@ const CartItemContainer = styled.div`
   display: flex;
   border-radius: 5px;
   padding: 1.5rem 0;
+  display: flex;
+  align-items: center;
 
   &:not(:last-child) {
     border-bottom: ${({theme}) => `1px solid ${theme["gray"]}`};
@@ -78,6 +80,7 @@ const CartItemImageContainer = styled.div`
   width: 80px;
   height: 80px;
   border-radius: 5px;
+  align-self: flex-start;
 `;
 
 const CartItemImage = styled.img`
@@ -124,7 +127,7 @@ export default function CartItem(props) {
   return (
     <CartItemContainer>
       <CartItemCheckboxContainer>
-        <CheckboxInput />
+        <Checkbox id={productId} onChange={() => {}} />
       </CartItemCheckboxContainer>
       <CartItemImageContainer>
         <CartItemImage
@@ -161,7 +164,7 @@ export default function CartItem(props) {
           <IconButton color="white" backgroundColor="blue" disabled>
             <Subtract width="24" height="3" />
           </IconButton>
-          <Input size="small" value={productQuantity} />
+          <Input size="small" value={productQuantity} onChange={() => {}} />
           <IconButton color="white" backgroundColor="blue">
             <Add width="24" height="12" />
           </IconButton>

@@ -4,12 +4,7 @@ import Divider from "components/Divider";
 import Layout from "components/Layout";
 import {Button} from "components/Button";
 import {useCart} from "utils/cart";
-
-import {
-  CheckboxInput,
-  CheckboxInputContainer,
-  CheckboxInputLabel
-} from "components/Checkbox";
+import Checkbox from "components/Checkbox";
 import CartItem from "features/cart/CartItem";
 
 const CartContainer = styled.div`
@@ -73,10 +68,7 @@ export default function Cart() {
       <CartContainer>
         <CartItemsListContainer>
           <AllOptionContainer>
-            <CheckboxInputContainer>
-              <CheckboxInput id="all" />
-              <CheckboxInputLabel id="all" label="Pilih Semua" />
-            </CheckboxInputContainer>
+            <Checkbox id="all" label="Pilih Semua" />
             <Button variant="ghost" size="small">
               Hapus
             </Button>

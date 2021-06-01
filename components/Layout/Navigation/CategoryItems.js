@@ -9,7 +9,6 @@ import {
   NavigationPopoverOverlay,
   NavigationPopoverTrigger
 } from "./Popover";
-import {useRouter} from "next/router";
 import {usePopoverPosition} from "./utils";
 import {Button} from "components/Button";
 
@@ -44,9 +43,15 @@ const CategoryDetailContent = styled.div`
   grid-gap: 1rem;
 `;
 
+const CategoryToggler = styled.div`
+  font-size: 1rem;
+  font-weight: 700;
+  margin: 0 1rem;
+  color: ${({theme}) => theme.blue};
+`;
+
 // TODO: change item url path
 function CategoryItems() {
-  const router = useRouter();
   const {isOpen, onOpen, onClose, position} = usePopoverPosition();
   const [categoryDetail, setCategoryDetail] = React.useState(null);
 
@@ -57,16 +62,10 @@ function CategoryItems() {
       onClose={onClose}
       contentXPosition={`${position?.left}px`}
       contentYPosition={`${position?.bottom + 16}px`}
-      topOverlay={`${position?.bottom + 22}px`}
+      topOverlay={`${position?.bottom + 32}px`}
     >
       <NavigationPopoverTrigger>
-        <Button
-          onClick={() => router.push("/category")}
-          variant="ghost"
-          size="small"
-        >
-          Kategori
-        </Button>
+        <CategoryToggler>Kategori</CategoryToggler>
       </NavigationPopoverTrigger>
       <NavigationPopoverContent>
         <CategoryItemsContainer>
